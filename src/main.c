@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/20 19:24:24 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:19:48 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ int		main(int argc, char **argv)
 	t_ipoint	start;
 	t_ipoint	end;
 	int			zoom;
+	int			bpp;
+	int			s_l;
+	int			endian;
 	(void)**argv;
 
 	if (argc <= 1)
@@ -34,6 +37,10 @@ int		main(int argc, char **argv)
 	tmlx.win_width = ABS((int)(end.real * (double)zoom) - (int)(start.real * (double)zoom));
 	tmlx.mlx = mlx_init();
 	tmlx.win = mlx_new_window(tmlx.mlx, tmlx.win_width, tmlx.win_height, "fractol");
-	mandelbrot(&tmlx, start, end, zoom);
+	tmlx.ptr_image = mlx_new_image(tmlx.mlx, tmlx.win_width, tmlx.win_height);
+	tmlx.str_image = mlx_get_data_addr(tmlx.ptr_image, &(bpp), &(s_l), &(endian));
+	mandelbrot(&tmlx, start, zoom);
+	mlx_put_image_to_window(tmlx.mlx, tmlx.win, tmlx.ptr_image, 0, 0);
 	mlx_loop(tmlx.mlx);
+	free(tmlx.color_scale);
 }

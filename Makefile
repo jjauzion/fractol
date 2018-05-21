@@ -6,7 +6,7 @@
 #    By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 11:25:23 by jjauzion          #+#    #+#              #
-#    Updated: 2018/05/20 17:52:44 by jjauzion         ###   ########.fr        #
+#    Updated: 2018/05/21 14:47:45 by jjauzion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,10 @@ SRC_NAME1 = main.c \
 			twd_left_lines.c \
 			ver_hor_lines.c \
 			pixel_put.c \
+			color_fct.c \
+			scale.c \
+			rgb_tsv_convertion.c \
+			fill_image.c \
 			mandelbrot.c
 
 SRC_NAME2 = 

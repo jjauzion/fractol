@@ -6,14 +6,14 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/20 19:24:19 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/21 15:25:32 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
 
-void	mandelbrot(t_mlx *tmlx, t_ipoint start, t_ipoint end, int zoom)
+void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 {
 	t_ipoint	z;
 	t_ipoint	c;
@@ -21,9 +21,10 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, t_ipoint end, int zoom)
 	int			j;
 	int			max_iter;
 	double		tmp;
-	(void) end;
+	int			color;
 
 	max_iter = 50;
+	tmlx->color_scale = scale(0x2567A8, max_iter);
 	p.x = -1;
 	while (++p.x < tmlx->win_width)
 	{
@@ -42,7 +43,12 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, t_ipoint end, int zoom)
 				z.real = tmp;
 			}
 			if (j >= max_iter)
-				pixel_put(tmlx, &p, 0, 0);
+				fill_image(tmlx, &p, 0);
+			else if (j >= 5)
+			{
+				color = get_color(j, tmlx->color_scale);
+				fill_image(tmlx, &p, color);
+			}
 		}
 	}
 }
