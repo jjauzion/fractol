@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/21 15:18:17 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/21 19:01:16 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_ipoint
 
 void			mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom);
 int				**scale(int color, int val);
+int				key_hook(int keycode, void *param);
 
 void			fill_image(t_mlx *tmlx, t_point2d *p, int color);
 int				get_color(int value, int **color_scale);
