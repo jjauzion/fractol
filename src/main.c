@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/21 19:02:32 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/26 15:56:11 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int		main(int argc, char **argv)
 	int			bpp;
 	int			s_l;
 	int			endian;
-	(void)**argv;
 
+	(void) **argv;
 	if (argc <= 1)
 	{
 		ft_putstr("Usage :\n");
