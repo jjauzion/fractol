@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/21 19:01:16 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:59:37 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,15 @@
 # include <mlx.h>
 # include <math.h>
 
-typedef struct	s_mlx
+# define NB_BUFF 4
+
+typedef struct	s_buffer
 {
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	void		*ptr_image;
-	char		*str_image;
-	int			**color_scale;
-}				t_mlx;
+	char		*str;
+	pthread_t	thread;
+	int			start;
+	int			size;
+}				t_buffer;
 
 typedef struct	s_point2d
 {
@@ -48,6 +47,26 @@ typedef struct	s_ipoint
 	double			real;
 	double			imag;
 }				t_ipoint;
+
+typedef struct	s_fractal
+{
+	t_ipoint	start;
+	int			zoom;
+}				t_fractal;
+
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	int			**color_scale;
+	void		*ptr_image;
+	char		*str_image;
+	t_buffer	*buff;
+	int			buff_id;
+	t_fractal	fractal;
+}				t_mlx;
 
 void			mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom);
 int				**scale(int color, int val);

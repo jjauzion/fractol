@@ -6,13 +6,13 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 14:28:37 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/26 19:10:06 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/26 19:33:54 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		fill_image(t_mlx *tmlx, t_point2d *p, int color)
+void		fill_string(t_mlx *tmlx, t_point2d *p, int color)
 {
 	int		index;
 	int		tmp;
