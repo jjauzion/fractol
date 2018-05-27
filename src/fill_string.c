@@ -6,23 +6,21 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 14:28:37 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/26 19:33:54 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 15:41:03 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void		fill_string(t_mlx *tmlx, t_point2d *p, int color)
+void		fill_string(t_buffer *buff, int index, int color)
 {
-	int		index;
 	int		tmp;
 
-	index = p->y * tmlx->win_width * 4 + p->x * 4;
 	tmp = (color & 0xFF);	
-	tmlx->str_image[index] = (char)tmp;
+	buff->buff[index] = (char)tmp;
 	tmp = (color & 0xFF00) >> 8;	
-	tmlx->str_image[index + 1] = (char)tmp;
+	buff->buff[index + 1] = (char)tmp;
 	tmp = (color & 0xFF0000) >> 16;	
-	tmlx->str_image[index + 2] = (char)tmp;
-	tmlx->str_image[index + 3] = 0;
+	buff->buff[index + 2] = (char)tmp;
+	buff->buff[index + 3] = 0;
 }

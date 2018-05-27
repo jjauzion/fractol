@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/26 19:37:54 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:21:53 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int		main(int argc, char **argv)
 {
 	t_mlx		tmlx;
+	t_fractal	fractal;
 	t_ipoint	start;
 	t_ipoint	end;
-	int			zoom;
 	int			bpp;
 	int			s_l;
 	int			endian;
@@ -32,16 +32,21 @@ int		main(int argc, char **argv)
 	start.imag = -1.2;
 	end.real = 0.6;
 	end.imag = 1.2;
-	zoom = 500;
-	tmlx.win_height = ABS((int)(end.imag * (double)zoom) - (int)(start.imag * (double)zoom));
-	tmlx.win_width = ABS((int)(end.real * (double)zoom) - (int)(start.real * (double)zoom));
+	fractal.zoom = 50;
+	tmlx.win_height = ABS((int)(end.imag * (double)fractal.zoom)
+			- (int)(start.imag * (double)fractal.zoom));
+	tmlx.win_width = ABS((int)(end.real * (double)fractal.zoom)
+			- (int)(start.real * (double)fractal.zoom));
+	ft_printf("h = %d ; w = %d\n", tmlx.win_height, tmlx.win_width);
+	getchar();
 	tmlx.mlx = mlx_init();
 	tmlx.win = mlx_new_window(tmlx.mlx, tmlx.win_width, tmlx.win_height, "fractol");
 	tmlx.ptr_image = mlx_new_image(tmlx.mlx, tmlx.win_width, tmlx.win_height);
 	tmlx.str_image = mlx_get_data_addr(tmlx.ptr_image, &(bpp), &(s_l), &(endian));
-	mandelbrot(&tmlx, start, zoom);
+	fractal.start = start;
+	generate_imgstr(&tmlx, &fractal);
 	mlx_put_image_to_window(tmlx.mlx, tmlx.win, tmlx.ptr_image, 0, 0);
 	mlx_key_hook(tmlx.win, key_hook, (void*)&tmlx);
 	mlx_loop(tmlx.mlx);
-	free(tmlx.color_scale);
+	free(fractal.color_scale);
 }

@@ -6,14 +6,16 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/26 20:01:19 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:38:26 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 #include <stdlib.h>
 
-void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
+pthread_mutex_t lock = PTHREAD_MUTEX_INITIALIZER;
+
+void	*mandelbrot(void *buffer)
 {
 	t_ipoint	z;
 	t_ipoint	c;
@@ -23,19 +25,32 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 	double		tmp;
 	int			color;
 	int			index;
+	t_buffer	*buff;
 
-	tmlx->buff_id++;
+	buff = (t_buffer*)buffer;
+pthread_mutex_lock(&lock);
+ft_printf("in thread %d\n", buff->buff_id);
+fflush(stdout);
+pthread_mutex_unlock(&lock);
 	max_iter = 50;
-	tmlx->color_scale = scale(0x2567A8, max_iter);
-	index = -1;
-	while (++index < tmlx->win_width * tmlx->win_height)
+	buff->fractal->color_scale = scale(0x2567A8, max_iter);
+	index = buff->start_index - 1;
+	while (++index < buff->win_width * buff->win_height)
 	{
-		p.x = index % tmlx->win_width;
-		p.y = index / tmlx->win_width;
+		p.x = index % buff->win_width;
+		p.y = index / buff->win_width;
+pthread_mutex_lock(&lock);
+ft_printf("px = %d ; py = %d\n", p.x, p.y);
+fflush(stdout);
+pthread_mutex_unlock(&lock);
 		z.real = 0;
 		z.imag = 0;
-		c.real = (double)p.x / (double)zoom + start.real;
-		c.imag = (double)p.y / (double)zoom + start.imag;
+		c.real = (double)p.x / (double)buff->fractal->zoom + buff->fractal->start.real;
+		c.imag = (double)p.y / (double)buff->fractal->zoom + buff->fractal->start.imag;
+pthread_mutex_lock(&lock);
+printf("creal = %f ; cimag = %f\n", c.real, c.imag);
+fflush(stdout);
+pthread_mutex_unlock(&lock);
 		j = -1;
 		while ((++j < max_iter) && (z.real * z.real + z.imag * z.imag < 4.0))
 		{
@@ -44,11 +59,12 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 			z.real = tmp;
 		}
 		if (j >= max_iter)
-			fill_image(tmlx, &p, 0);
+			fill_string(buff, index - buff->start_index, 0);
 		else if (j >= 5)
 		{
-			color = get_color(j, tmlx->color_scale);
-			fill_image(tmlx, &p, color);
+			color = get_color(j, buff->fractal->color_scale);
+			fill_string(buff, index - buff->start_index, color);
 		}
 	}
+	pthread_exit(NULL);
 }
