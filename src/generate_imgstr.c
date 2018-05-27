@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:02 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:40:34 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:49:26 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ int					generate_imgstr(t_mlx *tmlx, t_fractal *fractal)
 			perror("pthread_join");
 			return (EXIT_FAILURE);
 		}
-		ft_printf("thread %d termnated\n", i);
+//		ft_printf("thread %d termnated\n", i);
 	}
-	ft_printf("ALL THREAD TERMINATED !! CONGRATZ :)\n");
+//	ft_printf("ALL THREAD TERMINATED !! CONGRATZ :)\n");
 	join_buffer(tmlx->str_image, buffer);
 	return (EXIT_SUCCESS);
 }

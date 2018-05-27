@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:40:30 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:07:09 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	*mandelbrot(void *buffer)
 	t_buffer	*buff;
 
 	buff = (t_buffer*)buffer;
-pthread_mutex_lock(&lock);
+/*pthread_mutex_lock(&lock);
 ft_printf("in thread %d\n", buff->buff_id);
 fflush(stdout);
-pthread_mutex_unlock(&lock);
+pthread_mutex_unlock(&lock);*/
 	max_iter = 50;
 	buff->fractal->color_scale = scale(0x2567A8, max_iter);
 	index = buff->start_index - 1;
@@ -48,7 +48,7 @@ pthread_mutex_unlock(&lock);
 		c.real = (double)p.x / (double)buff->fractal->zoom + buff->fractal->start.real;
 		c.imag = (double)p.y / (double)buff->fractal->zoom + buff->fractal->start.imag;
 pthread_mutex_lock(&lock);
-printf("creal = %f ; cimag = %f\n", c.real, c.imag);
+printf("c.real = %f ; c.imag = %f\n", c.real, c.imag);
 fflush(stdout);
 pthread_mutex_unlock(&lock);
 		j = -1;
@@ -62,6 +62,10 @@ pthread_mutex_unlock(&lock);
 			fill_string(buff, index - buff->start_index, 0);
 		else if (j >= 5)
 		{
+pthread_mutex_lock(&lock);
+printf("FRACTAL\n");
+fflush(stdout);
+pthread_mutex_unlock(&lock);
 			color = get_color(j, buff->fractal->color_scale);
 			fill_string(buff, index - buff->start_index, color);
 		}

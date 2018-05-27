@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:40:39 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:47:20 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ int		main(int argc, char **argv)
 			- (int)(start.imag * (double)fractal.zoom));
 	tmlx.win_width = ABS((int)(end.real * (double)fractal.zoom)
 			- (int)(start.real * (double)fractal.zoom));
-	ft_printf("h = %d ; w = %d\n", tmlx.win_height, tmlx.win_width);
-	getchar();
 	tmlx.mlx = mlx_init();
 	tmlx.win = mlx_new_window(tmlx.mlx, tmlx.win_width, tmlx.win_height, "fractol");
 	tmlx.ptr_image = mlx_new_image(tmlx.mlx, tmlx.win_width, tmlx.win_height);
