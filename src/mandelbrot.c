@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:52:16 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:43:09 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ fflush(stdout);
 pthread_mutex_unlock(&lock);*/
 	max_iter = 50;
 	buff->fractal->color_scale = scale(0x2567A8, max_iter);
-	index = buff->start_index - 1;
-	while (++index < buff->win_width * buff->win_height)
+	index = buff->start_pixel - 1;
+	while (++index < buff->start_pixel + (buff->size / 4))
 	{
 		p.x = index % buff->win_width;
 		p.y = index / buff->win_width;
@@ -62,11 +62,6 @@ pthread_mutex_unlock(&lock);*/
 			fill_string(buff, &p, 0);
 		else if (j >= 5)
 		{
-/*pthread_mutex_lock(&lock);
-ft_printf("px = %d ; py = %d\n", p.x, p.y);
-ft_printf("index av = %d ; start_i = %d\n", index - buff->start_index, buff->start_index);
-fflush(stdout);
-pthread_mutex_unlock(&lock);*/
 			color = get_color(j, buff->fractal->color_scale);
 			fill_string(buff, &p, color);
 		}

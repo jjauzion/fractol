@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:49:38 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 20:00:59 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 # include <pthread.h>
 
-# define NB_BUFF 1
+# define NB_BUFF 4
 
 typedef struct	s_point2d
 {
@@ -64,7 +64,7 @@ typedef struct	s_buffer
 	char		*buff;
 	int			buff_id; //inutile?
 	pthread_t	thread;
-	int			start_index;
+	int			start_pixel;
 	int			size;
 	t_fractal	*fractal;
 	int			win_height;

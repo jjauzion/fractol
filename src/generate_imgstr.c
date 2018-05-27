@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:02 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:29:33 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:47:21 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static t_buffer		*init_buffer(int nb, t_mlx *tmlx, t_fractal *fractal)
 		buff[i].buff_id = i;
 		if (i == nb - 1)
 			buff_size = buff_size + (tmlx->win_height * tmlx->win_width) % NB_BUFF;
-		if (!(buff[i].buff = (char*)malloc(sizeof(char) * buff_size)))
+		buff[i].size = buff_size * 4;
+		if (!(buff[i].buff = (char*)malloc(sizeof(char) * buff[i].size)))
 			return NULL;
-		buff[i].size = buff_size;
 		buff[i].win_width = tmlx->win_width;
 		buff[i].win_height = tmlx->win_height;
-		buff[i].start_index = i * buff_size;
+		buff[i].start_pixel = i * buff_size;
 		buff[i].fractal = fractal;
 	}
 	return (buff);
@@ -79,6 +79,7 @@ int					generate_imgstr(t_mlx *tmlx, t_fractal *fractal)
 	}
 	join_buffer(tmlx->str_image, buffer);
 //	(void)join_buffer;
-//	tmlx->str_image = buffer->buff;
+//	printf("buff size = %d\n", buffer->size);
+//	tmlx->str_image = (char*)memcpy((void*)tmlx->str_image, (const void*)buffer->buff, (size_t)buffer->size);
 	return (EXIT_SUCCESS);
 }

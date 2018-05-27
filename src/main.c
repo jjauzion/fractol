@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:53:44 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 19:56:16 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int argc, char **argv)
 	start.imag = -1.2;
 	end.real = 0.6;
 	end.imag = 1.2;
-	fractal.zoom = 50;
+	fractal.zoom = 500;
 	tmlx.win_height = ABS((int)(end.imag * (double)fractal.zoom)
 			- (int)(start.imag * (double)fractal.zoom));
 	tmlx.win_width = ABS((int)(end.real * (double)fractal.zoom)
