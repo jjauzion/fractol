@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:29:26 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:52:16 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ pthread_mutex_unlock(&lock);*/
 			z.real = tmp;
 		}
 		if (j >= max_iter)
-			fill_string(buff, index - buff->start_index, 0);
+			fill_string(buff, &p, 0);
 		else if (j >= 5)
 		{
 /*pthread_mutex_lock(&lock);
-printf("FRACTAL\n");
+ft_printf("px = %d ; py = %d\n", p.x, p.y);
+ft_printf("index av = %d ; start_i = %d\n", index - buff->start_index, buff->start_index);
 fflush(stdout);
 pthread_mutex_unlock(&lock);*/
 			color = get_color(j, buff->fractal->color_scale);
-			fill_string(buff, index - buff->start_index, color);
+			fill_string(buff, &p, color);
 		}
 	}
 	pthread_exit(NULL);

@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:40:37 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:49:38 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void			*mandelbrot(void *buffer);
 int				**scale(int color, int val);
 int				key_hook(int keycode, void *param);
 int				generate_imgstr(t_mlx *tmlx, t_fractal *fractal);
-void			fill_string(t_buffer *buff, int index, int color);
+void			fill_string(t_buffer *buff, t_point2d *p, int color);
 
 void			fill_image(t_mlx *tmlx, t_point2d *p, int color);
 int				get_color(int value, int **color_scale);
