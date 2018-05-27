@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/21 15:25:32 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 17:45:11 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 			z.imag = 0;
 			c.real = (double)p.x / (double)zoom + start.real;
 			c.imag = (double)p.y / (double)zoom + start.imag;
+//printf("px = %d ; py = %d\n", p.x, p.y);
+//printf("c.real = %f ; c.imag = %f\n", c.real, c.imag);
 			j = -1;
 			while ((++j < max_iter) && (z.real * z.real + z.imag * z.imag < 4.0))
 			{
