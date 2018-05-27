@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 18:07:09 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:29:26 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ pthread_mutex_unlock(&lock);*/
 	{
 		p.x = index % buff->win_width;
 		p.y = index / buff->win_width;
-pthread_mutex_lock(&lock);
+/*pthread_mutex_lock(&lock);
 ft_printf("px = %d ; py = %d\n", p.x, p.y);
 fflush(stdout);
-pthread_mutex_unlock(&lock);
+pthread_mutex_unlock(&lock);*/
 		z.real = 0;
 		z.imag = 0;
 		c.real = (double)p.x / (double)buff->fractal->zoom + buff->fractal->start.real;
 		c.imag = (double)p.y / (double)buff->fractal->zoom + buff->fractal->start.imag;
-pthread_mutex_lock(&lock);
+/*pthread_mutex_lock(&lock);
 printf("c.real = %f ; c.imag = %f\n", c.real, c.imag);
 fflush(stdout);
-pthread_mutex_unlock(&lock);
+pthread_mutex_unlock(&lock);*/
 		j = -1;
 		while ((++j < max_iter) && (z.real * z.real + z.imag * z.imag < 4.0))
 		{
@@ -62,10 +62,10 @@ pthread_mutex_unlock(&lock);
 			fill_string(buff, index - buff->start_index, 0);
 		else if (j >= 5)
 		{
-pthread_mutex_lock(&lock);
+/*pthread_mutex_lock(&lock);
 printf("FRACTAL\n");
 fflush(stdout);
-pthread_mutex_unlock(&lock);
+pthread_mutex_unlock(&lock);*/
 			color = get_color(j, buff->fractal->color_scale);
 			fill_string(buff, index - buff->start_index, color);
 		}

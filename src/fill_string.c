@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 14:28:37 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:40:36 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:26:29 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void		fill_string(t_buffer *buff, int index, int color)
 {
 	int		tmp;
 
+printf("index = %d\n", index);
 	tmp = (color & 0xFF);	
 	buff->buff[index] = (char)tmp;
 	tmp = (color & 0xFF00) >> 8;	
