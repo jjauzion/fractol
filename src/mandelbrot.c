@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:45:11 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:17:06 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 
 	max_iter = 50;
 	tmlx->color_scale = scale(0x2567A8, max_iter);
-	p.x = -1;
-	while (++p.x < tmlx->win_width)
+	p.y = -1;
+	while (++p.y < tmlx->win_height)
 	{
-		p.y = -1;
-		while (++p.y < tmlx->win_height)
+		p.x = -1;
+		while (++p.x < tmlx->win_width)
 		{
 			z.real = 0;
 			z.imag = 0;
@@ -48,6 +48,7 @@ void	mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom)
 				fill_image(tmlx, &p, 0);
 			else if (j >= 5)
 			{
+//printf("FRACTAL\n");
 				color = get_color(j, tmlx->color_scale);
 				fill_image(tmlx, &p, color);
 			}

@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 17:45:04 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/27 18:15:02 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int		main(int argc, char **argv)
 	start.imag = -1.2;
 	end.real = 0.6;
 	end.imag = 1.2;
-	zoom = 500;
+	zoom = 50;
 	tmlx.win_height = ABS((int)(end.imag * (double)zoom) - (int)(start.imag * (double)zoom));
 	tmlx.win_width = ABS((int)(end.real * (double)zoom) - (int)(start.real * (double)zoom));
 	tmlx.mlx = mlx_init();
