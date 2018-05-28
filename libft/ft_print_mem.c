@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   ft_print_mem.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jjauzion <jjauzion@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/22 11:51:33 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 15:14:27 by jjauzion         ###   ########.fr       */
+/*   Created: 2018/05/28 12:02:58 by jjauzion          #+#    #+#             */
+/*   Updated: 2018/05/28 12:04:14 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "libft.h"
 
-void		pixel_put(t_mlx *tmlx, t_point2d *p, int height, char option)
+void		ft_print_mem(void *adr, size_t length)
 {
-	int	color;
+	unsigned char	*byte_array;
+	size_t			i;
 
-	color = (option == 'c') ? get_color(height, tmlx->fractal->color_scale) : 0xFFFFFF;
-	mlx_pixel_put(tmlx->mlx, tmlx->win, p->x, p->y, color);
+	byte_array = adr;
+	i = 0;
+	while (i < length)
+	{
+		if (i % 2 == 0)
+			ft_printf(" ");
+		ft_printf("%02X", (unsigned)byte_array[i]);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 #    By: jjauzion <jjauzion@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/17 14:43:00 by jjauzion          #+#    #+#              #
-#    Updated: 2018/05/20 14:38:43 by jjauzion         ###   ########.fr        #
+#    Updated: 2018/05/28 12:05:56 by jjauzion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,8 @@ SRC_NAME1 = ft_memset.c \
 			ft_tab_mean.c \
 			ft_tab_min.c \
 			ft_tab_max.c \
-			get_next_line.c
+			get_next_line.c \
+			ft_print_mem.c
 
 SRC_NAME2 =	ft_printf.c \
 			ft_parse.c \

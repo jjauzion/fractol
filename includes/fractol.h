@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/21 19:01:16 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:12:46 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,10 @@
 # include "ft_printf.h"
 # include <mlx.h>
 # include <math.h>
+# include <pthread.h>
+# include <time.h>
 
-typedef struct	s_mlx
-{
-	void		*mlx;
-	void		*win;
-	int			win_height;
-	int			win_width;
-	void		*ptr_image;
-	char		*str_image;
-	int			**color_scale;
-}				t_mlx;
+# define NB_BUFF 32
 
 typedef struct	s_point2d
 {
@@ -49,9 +42,41 @@ typedef struct	s_ipoint
 	double			imag;
 }				t_ipoint;
 
-void			mandelbrot(t_mlx *tmlx, t_ipoint start, int zoom);
+typedef struct	s_fractal
+{
+	t_ipoint	start;
+	int			zoom;
+	int			**color_scale;
+}				t_fractal;
+
+typedef struct	s_mlx
+{
+	void		*mlx;
+	void		*win;
+	int			win_height;
+	int			win_width;
+	void		*ptr_image;
+	char		*str_image;
+	t_fractal	*fractal; //a supprimer, modif pixel_put requise
+}				t_mlx;
+
+typedef struct	s_buffer
+{
+	char		*buff;
+	int			buff_id; //inutile?
+	pthread_t	thread;
+	int			start_pixel;
+	int			size;
+	t_fractal	*fractal;
+	int			win_height;
+	int			win_width;
+}				t_buffer;
+
+void			*mandelbrot(void *buffer);
 int				**scale(int color, int val);
 int				key_hook(int keycode, void *param);
+int				generate_imgstr(t_mlx *tmlx, t_fractal *fractal);
+void			fill_string(t_buffer *buff, t_point2d *p, int color);
 
 void			fill_image(t_mlx *tmlx, t_point2d *p, int color);
 int				get_color(int value, int **color_scale);
