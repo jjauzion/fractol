@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 20:00:59 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:12:46 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 # include <mlx.h>
 # include <math.h>
 # include <pthread.h>
+# include <time.h>
 
-# define NB_BUFF 4
+# define NB_BUFF 32
 
 typedef struct	s_point2d
 {

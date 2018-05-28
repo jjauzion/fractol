@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 19:43:09 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:05:13 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ void	*mandelbrot(void *buffer)
 	int			color;
 	int			index;
 	t_buffer	*buff;
+	clock_t		begin;
+	clock_t		end;
+	double		duration;
+	int			cpt = 0;
 
+begin = clock();
 	buff = (t_buffer*)buffer;
-/*pthread_mutex_lock(&lock);
-ft_printf("in thread %d\n", buff->buff_id);
-fflush(stdout);
-pthread_mutex_unlock(&lock);*/
 	max_iter = 50;
 	buff->fractal->color_scale = scale(0x2567A8, max_iter);
 	index = buff->start_pixel - 1;
@@ -39,32 +40,32 @@ pthread_mutex_unlock(&lock);*/
 	{
 		p.x = index % buff->win_width;
 		p.y = index / buff->win_width;
-/*pthread_mutex_lock(&lock);
-ft_printf("px = %d ; py = %d\n", p.x, p.y);
-fflush(stdout);
-pthread_mutex_unlock(&lock);*/
 		z.real = 0;
 		z.imag = 0;
 		c.real = (double)p.x / (double)buff->fractal->zoom + buff->fractal->start.real;
 		c.imag = (double)p.y / (double)buff->fractal->zoom + buff->fractal->start.imag;
-/*pthread_mutex_lock(&lock);
-printf("c.real = %f ; c.imag = %f\n", c.real, c.imag);
-fflush(stdout);
-pthread_mutex_unlock(&lock);*/
 		j = -1;
 		while ((++j < max_iter) && (z.real * z.real + z.imag * z.imag < 4.0))
 		{
 			tmp = z.real * z.real - z.imag * z.imag + c.real;
 			z.imag = 2. * z.real * z.imag + c.imag;
 			z.real = tmp;
+			cpt++;
 		}
-		if (j >= max_iter)
-			fill_string(buff, &p, 0);
-		else if (j >= 5)
-		{
-			color = get_color(j, buff->fractal->color_scale);
-			fill_string(buff, &p, color);
-		}
+		color = get_color(j, buff->fractal->color_scale);
+		fill_string(buff, &p, color);
 	}
-	pthread_exit(NULL);
+end = clock();
+duration = (double)(end - begin) / CLOCKS_PER_SEC;
+if (NB_BUFF != 1)
+	pthread_mutex_lock(&lock);
+printf("thread %d duration : %f | ", buff->buff_id, duration);
+printf("nb iter : %d | nb of pixel computed : %d\n", index + cpt, buff->size);
+if (NB_BUFF != 1) {
+fflush(stdout);
+pthread_mutex_unlock(&lock);}
+	if (NB_BUFF != 1)
+		pthread_exit(NULL);
+	else
+		return (NULL);
 }

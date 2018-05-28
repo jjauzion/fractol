@@ -6,7 +6,7 @@
 #    By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 11:25:23 by jjauzion          #+#    #+#              #
-#    Updated: 2018/05/27 15:22:51 by jjauzion         ###   ########.fr        #
+#    Updated: 2018/05/28 10:20:21 by jjauzion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,6 @@ SRC_NAME1 = main.c \
 			color_fct.c \
 			scale.c \
 			rgb_tsv_convertion.c \
-			fill_image.c \
 			fill_string.c \
 			mandelbrot.c \
 			event_hook.c \

@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:02 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/27 19:47:21 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 17:38:08 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ static t_buffer		*init_buffer(int nb, t_mlx *tmlx, t_fractal *fractal)
 	while (++i < nb)
 	{
 		buff[i].buff_id = i;
+		buff[i].buff = tmlx->str_image + i * buff_size * 4;
 		if (i == nb - 1)
 			buff_size = buff_size + (tmlx->win_height * tmlx->win_width) % NB_BUFF;
 		buff[i].size = buff_size * 4;
-		if (!(buff[i].buff = (char*)malloc(sizeof(char) * buff[i].size)))
-			return NULL;
 		buff[i].win_width = tmlx->win_width;
 		buff[i].win_height = tmlx->win_height;
 		buff[i].start_pixel = i * buff_size;
@@ -38,27 +37,29 @@ static t_buffer		*init_buffer(int nb, t_mlx *tmlx, t_fractal *fractal)
 	return (buff);
 }
 
-static void			join_buffer(char *dest, t_buffer *buffer)
-{
-	int			i;
-	void		*ptr;
-
-	ptr = (void*)dest;
-	i = -1;
-	while (++i < NB_BUFF)
-	{
-		ft_memcpy(ptr, (const void*)buffer[i].buff, (size_t)buffer[i].size);
-		if (i != NB_BUFF - 1)
-			ptr = ptr + buffer[i].size;
-	}
-}
-
 int					generate_imgstr(t_mlx *tmlx, t_fractal *fractal)
 {
 	int			i;
 	t_buffer	*buffer;
+	clock_t		begin;
+	clock_t		end;
+	double		duration;
 
+	begin = clock();
 	buffer = init_buffer(NB_BUFF, tmlx, fractal);
+end = clock();
+duration = (double)(end - begin) / CLOCKS_PER_SEC;
+printf("duration init = %f\n", duration);
+	if (NB_BUFF == 1)
+	{
+		mandelbrot((void*)buffer);
+end = clock();
+duration = (double)(end - begin) / CLOCKS_PER_SEC;
+printf("duration fin = %f\n", duration);
+		free(buffer);
+		return (0);
+		//return (mandelbrot((void*)buffer) == NULL);
+	}
 	i = -1;
 	while (++i < NB_BUFF)
 	{
@@ -77,9 +78,9 @@ int					generate_imgstr(t_mlx *tmlx, t_fractal *fractal)
 			return (EXIT_FAILURE);
 		}
 	}
-	join_buffer(tmlx->str_image, buffer);
-//	(void)join_buffer;
-//	printf("buff size = %d\n", buffer->size);
-//	tmlx->str_image = (char*)memcpy((void*)tmlx->str_image, (const void*)buffer->buff, (size_t)buffer->size);
+end = clock();
+duration = (double)(end - begin) / CLOCKS_PER_SEC;
+printf("duration fin = %f\n", duration);
+	free(buffer);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jjauzion <jjauzion@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 21:09:27 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/03/08 11:53:51 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 12:05:17 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void				ft_lstadd(t_list **alst, t_list *n);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void				ft_print_mem(void *adr, size_t length);
 
 int					ft_tab_mean(int *tab, int nb_elm);
 int					ft_tab_min(int *tab, int nb_elm);
