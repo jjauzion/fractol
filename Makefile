@@ -6,7 +6,7 @@
 #    By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/08 11:25:23 by jjauzion          #+#    #+#              #
-#    Updated: 2018/05/28 10:20:21 by jjauzion         ###   ########.fr        #
+#    Updated: 2018/05/29 10:29:35 by jjauzion         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC_NAME1 = main.c \
 			fill_string.c \
 			mandelbrot.c \
 			event_hook.c \
-			generate_imgstr.c
+			generate_imgstr.c \
+			display.c
 
 SRC_NAME2 = 
 

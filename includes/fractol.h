@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/28 17:12:46 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/29 12:24:40 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <pthread.h>
 # include <time.h>
 
-# define NB_BUFF 32
+# define NB_BUFF 16
+# define ZOOM_FACTOR 1.1
 
 typedef struct	s_point2d
 {
@@ -45,7 +46,8 @@ typedef struct	s_ipoint
 typedef struct	s_fractal
 {
 	t_ipoint	start;
-	int			zoom;
+	uintmax_t	zoom;
+	int			max_iter;
 	int			**color_scale;
 }				t_fractal;
 
@@ -75,8 +77,10 @@ typedef struct	s_buffer
 void			*mandelbrot(void *buffer);
 int				**scale(int color, int val);
 int				key_hook(int keycode, void *param);
+int				mouse_hook(int button, int x, int y, void *tmlx);
 int				generate_imgstr(t_mlx *tmlx, t_fractal *fractal);
 void			fill_string(t_buffer *buff, t_point2d *p, int color);
+void			display(t_mlx *tmlx, t_fractal *fractal);
 
 void			fill_image(t_mlx *tmlx, t_point2d *p, int color);
 int				get_color(int value, int **color_scale);

@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/28 18:12:52 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/29 11:06:10 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ int		main(int argc, char **argv)
 	tmlx.ptr_image = mlx_new_image(tmlx.mlx, tmlx.win_width, tmlx.win_height);
 	tmlx.str_image = mlx_get_data_addr(tmlx.ptr_image, &(bpp), &(s_l), &(endian));
 	fractal.start = start;
-	generate_imgstr(&tmlx, &fractal);
-	mlx_put_image_to_window(tmlx.mlx, tmlx.win, tmlx.ptr_image, 0, 0);
+	fractal.max_iter = 50;
+	tmlx.fractal = &fractal;
+	display(&tmlx, &fractal);
 	mlx_key_hook(tmlx.win, key_hook, (void*)&tmlx);
+	mlx_mouse_hook(tmlx.win, mouse_hook, (void*)&tmlx);
 	mlx_loop(tmlx.mlx);
 	free(fractal.color_scale);
 }

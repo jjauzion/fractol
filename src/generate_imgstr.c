@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:02 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/28 17:38:08 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/28 19:22:00 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ int					generate_imgstr(t_mlx *tmlx, t_fractal *fractal)
 {
 	int			i;
 	t_buffer	*buffer;
-	clock_t		begin;
+/*	clock_t		begin;
 	clock_t		end;
 	double		duration;
 
-	begin = clock();
+	begin = clock();*/
 	buffer = init_buffer(NB_BUFF, tmlx, fractal);
-end = clock();
+/*end = clock();
 duration = (double)(end - begin) / CLOCKS_PER_SEC;
-printf("duration init = %f\n", duration);
+printf("duration init = %f\n", duration);*/
 	if (NB_BUFF == 1)
 	{
 		mandelbrot((void*)buffer);
-end = clock();
+/*end = clock();
 duration = (double)(end - begin) / CLOCKS_PER_SEC;
-printf("duration fin = %f\n", duration);
+printf("duration fin = %f\n", duration);*/
 		free(buffer);
 		return (0);
 		//return (mandelbrot((void*)buffer) == NULL);
@@ -78,9 +78,9 @@ printf("duration fin = %f\n", duration);
 			return (EXIT_FAILURE);
 		}
 	}
-end = clock();
+/*end = clock();
 duration = (double)(end - begin) / CLOCKS_PER_SEC;
-printf("duration fin = %f\n", duration);
+printf("duration fin = %f\n", duration);*/
 	free(buffer);
 	return (EXIT_SUCCESS);
 }
