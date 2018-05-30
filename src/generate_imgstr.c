@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/26 16:19:02 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/28 19:22:00 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/30 12:28:15 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,12 @@ printf("duration fin = %f\n", duration);*/
 			perror("pthread_join");
 			return (EXIT_FAILURE);
 		}
+		if (i == 0)
+			fractal->min_iter = buffer[i].min_iter;
+		else if (buffer[i].min_iter < fractal->min_iter)
+			fractal->min_iter = buffer[i].min_iter;
 	}
+ft_printf("iter min = %d\n", fractal->min_iter);
 /*end = clock();
 duration = (double)(end - begin) / CLOCKS_PER_SEC;
 printf("duration fin = %f\n", duration);*/

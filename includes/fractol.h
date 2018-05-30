@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/29 12:24:40 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/30 14:41:27 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <pthread.h>
 # include <time.h>
 
-# define NB_BUFF 16
+# define NB_BUFF 8
 # define ZOOM_FACTOR 1.1
 
 typedef struct	s_point2d
@@ -46,8 +46,9 @@ typedef struct	s_ipoint
 typedef struct	s_fractal
 {
 	t_ipoint	start;
-	uintmax_t	zoom;
+	double		zoom;
 	int			max_iter;
+	int			min_iter;
 	int			**color_scale;
 }				t_fractal;
 
@@ -59,7 +60,8 @@ typedef struct	s_mlx
 	int			win_width;
 	void		*ptr_image;
 	char		*str_image;
-	t_fractal	*fractal; //a supprimer, modif pixel_put requise
+	t_fractal	*fractal;
+	char		zoomin;
 }				t_mlx;
 
 typedef struct	s_buffer
@@ -72,6 +74,7 @@ typedef struct	s_buffer
 	t_fractal	*fractal;
 	int			win_height;
 	int			win_width;
+	int			min_iter;
 }				t_buffer;
 
 void			*mandelbrot(void *buffer);

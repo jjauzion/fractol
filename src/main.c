@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/29 11:06:10 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/30 12:46:39 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int		main(int argc, char **argv)
 	tmlx.str_image = mlx_get_data_addr(tmlx.ptr_image, &(bpp), &(s_l), &(endian));
 	fractal.start = start;
 	fractal.max_iter = 50;
+	fractal.min_iter = 0;
+	fractal.color_scale = scale(0x2567A8, 50);
 	tmlx.fractal = &fractal;
+	tmlx.zoomin = 0;
 	display(&tmlx, &fractal);
 	mlx_key_hook(tmlx.win, key_hook, (void*)&tmlx);
 	mlx_mouse_hook(tmlx.win, mouse_hook, (void*)&tmlx);

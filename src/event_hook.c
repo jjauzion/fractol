@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:57:04 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/29 12:31:32 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/30 13:13:27 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,24 @@ int		key_hook(int keycode, void *param)
 	else if (keycode == 49)
 	{
 		fract->zoom = 500;
+		fract->max_iter = 50;
 		fract->start.real = -2.1;
 		fract->start.imag = -1.2;
-		display(tmlx, fract);
 	}
+	else if (keycode == 69)
+		fract->max_iter += 1;
+	else if (keycode == 78)
+		fract->max_iter -= 1;
+	else if (keycode == 126)
+		fract->start.imag -= 10 / fract->zoom; 
+	else if (keycode == 125)
+		fract->start.imag += 10 / fract->zoom; 
+	else if (keycode == 124)
+		fract->start.real += 10 / fract->zoom; 
+	else if (keycode == 123)
+		fract->start.real -= 10 / fract->zoom; 
+	printf("max_iter = %d\n", fract->max_iter);
+	display(tmlx, fract);
 	return (0);
 }
 
@@ -43,11 +57,23 @@ int		mouse_hook(int button, int x, int y, void *param)
 	fract = (t_fractal*)tmlx->fractal;
 	mouse.real = (double)x / (double)fract->zoom + fract->start.real;
 	mouse.imag = (double)y / (double)fract->zoom + fract->start.imag;
-	fract->zoom = (int)((double)fract->zoom * ZOOM_FACTOR);
+	fract->zoom = fract->zoom * ZOOM_FACTOR;
 	fract->start.real = mouse.real - (double)x / (double)fract->zoom;
 	fract->start.imag = mouse.imag - (double)y / (double)fract->zoom;
-	fract->max_iter += 1;
-	printf("zoom = %ju ; start.real = %f ; start.imag = %f\n", fract->zoom, fract->start.real, fract->start.imag);
+	fract->max_iter = fract->min_iter + 50;
+	printf("zoom = %f ; max_iter = %d\n", fract->zoom, fract->max_iter);
 	display(tmlx, fract);
+	return (0);
+}
+
+int		loop_hook(void *param)
+{
+	t_mlx	*tmlx;
+
+	tmlx = (t_mlx*)param;
+	if (tmlx->zoomin == 1)
+	{
+			
+	}
 	return (0);
 }
