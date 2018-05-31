@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:45:33 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/30 11:45:13 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/31 10:52:31 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	interpolate(int **color_scale, int value)
 
 int	get_color(int value, int **color_scale)
 {
-	value = value % 100;
+	value = value % color_scale[0][color_scale[0][0]];
 	if (color_scale[0][0] < 1)
 		return (0xFFFFFF);
 	if (value < color_scale[0][1])

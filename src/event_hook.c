@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/21 18:57:04 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/30 13:13:27 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/31 11:12:34 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		key_hook(int keycode, void *param)
 {
 	t_mlx		*tmlx;
 	t_fractal	*fract;
+	static int	color = 1;
 
 	tmlx = (t_mlx*)param;
 	fract = (t_fractal*)tmlx->fractal;
@@ -40,6 +41,21 @@ int		key_hook(int keycode, void *param)
 		fract->start.real += 10 / fract->zoom; 
 	else if (keycode == 123)
 		fract->start.real -= 10 / fract->zoom; 
+	else if (keycode == 8)
+	{
+		if (color == 1)
+		{
+			color = 2;
+			free(fract->color_scale);
+			fract->color_scale = scale2();
+		}
+		else
+		{
+			color = 1;
+			free(fract->color_scale);
+			fract->color_scale = scale1();
+		}
+	}
 	printf("max_iter = %d\n", fract->max_iter);
 	display(tmlx, fract);
 	return (0);

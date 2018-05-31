@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 17:21:49 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/30 12:36:25 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/31 10:20:06 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	*mandelbrot(void *buffer)
 
 	buff = (t_buffer*)buffer;
 	max_iter = buff->fractal->max_iter;
-//	buff->fractal->color_scale = scale(0x2567A8, max_iter);
 	index = buff->start_pixel - 1;
 	while (++index < buff->start_pixel + (buff->size / 4))
 	{
@@ -50,8 +49,11 @@ void	*mandelbrot(void *buffer)
 			min_iter = j;
 		else if (j < min_iter)
 			min_iter = j;
-		color = get_color(j, buff->fractal->color_scale);
-		fill_string(buff, &p, color);
+		if (j < max_iter)
+			color = get_color(j, buff->fractal->color_scale);
+		else
+			color = 0;
+			fill_string(buff, &p, color);
 	}
 	buff->min_iter = min_iter;
 	if (NB_BUFF != 1)

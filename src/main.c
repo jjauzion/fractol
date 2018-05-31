@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 15:15:57 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/30 12:46:39 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/31 11:04:01 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		main(int argc, char **argv)
 	fractal.start = start;
 	fractal.max_iter = 50;
 	fractal.min_iter = 0;
-	fractal.color_scale = scale(0x2567A8, 50);
+	fractal.color_scale = scale1();
 	tmlx.fractal = &fractal;
 	tmlx.zoomin = 0;
 	display(&tmlx, &fractal);

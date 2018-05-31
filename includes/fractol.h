@@ -6,7 +6,7 @@
 /*   By: jjauzion <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/20 14:49:00 by jjauzion          #+#    #+#             */
-/*   Updated: 2018/05/30 14:41:27 by jjauzion         ###   ########.fr       */
+/*   Updated: 2018/05/31 11:11:46 by jjauzion         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,8 @@ typedef struct	s_buffer
 }				t_buffer;
 
 void			*mandelbrot(void *buffer);
-int				**scale(int color, int val);
+int				**scale1(void);
+int				**scale2(void);
 int				key_hook(int keycode, void *param);
 int				mouse_hook(int button, int x, int y, void *tmlx);
 int				generate_imgstr(t_mlx *tmlx, t_fractal *fractal);
