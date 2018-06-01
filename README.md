@@ -1,5 +1,5 @@
 # Fractol - ONGOING DEVELOPMENT
-This program generates fractal 2D images with possibility to zoom in up to the limit of the machine.
+This program generates a 2D fractal images with possibility to zoom in up to the limit of the machine.
 The program is multithread and use all CPU power available.
 
 ## compatibility
