@@ -46,7 +46,7 @@ INC_PATH1 = libft/
 
 INC_PATH2 = includes/
 
-INC_NAME1 = libft.h
+INC_NAME1 = ft_printf.h
 
 INC_NAME2 = fractol.h
 
