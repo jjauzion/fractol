@@ -39,7 +39,7 @@ LIB_PATH = libft/
 
 LDLIBS = libftprintf.a
 
-EXT_LIB = -L minilibx -lmlx \
+EXT_LIB = -Lminilibx -lmlx \
 		  -framework OpenGL -framework AppKit
 
 INC_PATH1 = libft/
@@ -83,7 +83,7 @@ LDFLAGS = $(addprefix $(LIB_PATH),$(LDLIBS))
 CPPFLAGS = $(addprefix -I,$(INC_PATH1)) \
 		   $(addprefix -I,$(INC_PATH2))
 
-all: LIB $(NAME)
+all: LIB MLXLIB $(NAME)
 
 $(NAME): $(LDFLAGS) $(OBJ1) $(OBJ2)
 	$(CC) $(DBFLAGS) $(LDFLAGS) $(EXT_LIB) $(OBJ1) $(OBJ2) -o $(NAME)
@@ -91,12 +91,16 @@ $(NAME): $(LDFLAGS) $(OBJ1) $(OBJ2)
 LIB:
 	make -C libft
 
+MLXLIB:
+	make -C minilibx
+
 $(OBJ_PATH1)%.o: $(SRC_PATH1)%.c $(INC) Makefile
 	@mkdir $(OBJ_PATH1) 2> /dev/null || true
 	$(CC) $(CFLAGS) $(DBFLAGS) -c $< $(CPPFLAGS) -o $@
 
 clean:
 	make -C libft clean
+	make -C minilibx clean
 	rm -f $(OBJ1) $(OBJ2)
 	@rmdir $(OBJ_PATH1) 2> /dev/null || true
 
